@@ -9,8 +9,8 @@ from langchain_core.messages import HumanMessage, SystemMessage, ToolMessage
 
 # --- STREAMLIT UI CONFIGURATION ---
 st.set_page_config(page_title="AI Agent Framework", page_icon="🤖", layout="wide")
-st.title("🤖 LangChain & Groq AI Agent Dashboard")
-st.write("Convert your Jupyter loop into an interactive local application.")
+st.title("🤖 AgentIQ")
+st.write("Think. Reason. Act.")
 
 # --- SIDEBAR: SECURE CREDENTIAL INPUT ---
 with st.sidebar:
