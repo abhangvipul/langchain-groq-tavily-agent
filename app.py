@@ -9,18 +9,32 @@ from langchain_core.messages import HumanMessage, SystemMessage, ToolMessage
 
 # --- STREAMLIT UI CONFIGURATION ---
 st.set_page_config(page_title="AI Agent Framework", page_icon="🤖", layout="wide")
-st.title("🤖 AgentIQ")
-st.write("Think. Reason. Act.")
+st.title("🤖 LangChain & Groq AI Agent Dashboard")
+st.write("Your agent is now fully authenticated using secure cloud environment secrets.")
 
-# --- SIDEBAR: SECURE CREDENTIAL INPUT ---
+# --- SECURE CREDENTIAL RETRIEVAL ---
+# This pulls safely from Streamlit Cloud Secrets or local .streamlit/secrets.toml
+GROQ_API_KEY = st.secrets.get("GROQ_API_KEY", "")
+TAVILY_API_KEY = st.secrets.get("TAVILY_API_KEY", "")
+
+# Sync secrets to the OS environment so LangChain tools can find them natively
+if GROQ_API_KEY:
+    os.environ["GROQ_API_KEY"] = GROQ_API_KEY
+if TAVILY_API_KEY:
+    os.environ["TAVILY_API_KEY"] = TAVILY_API_KEY
+
+# --- SIDEBAR CONFIGURATION ---
 with st.sidebar:
-    st.header("🔑 API Configurations")
-    groq_key = st.text_input("Groq API Key", type="password")
-    tavily_key = st.text_input("Tavily API Key", type="password")
-    
-    st.markdown("---")
+    st.header("⚙️ Agent Settings")
     max_steps = st.slider("Max Agent Loops", min_value=1, max_value=10, value=5)
     model_choice = st.selectbox("LLM Model Core", ["openai/gpt-oss-120b", "llama-3.3-70b-versatile"])
+    
+    st.markdown("---")
+    # Visual validation status indicators
+    if GROQ_API_KEY and TAVILY_API_KEY:
+        st.success("🔒 System Status: Fully Authenticated")
+    else:
+        st.error("⚠️ System Status: Missing Cloud Secrets")
 
 # --- DEFINE CUSTOM TOOLS ---
 @tool
@@ -45,7 +59,6 @@ def run_agent_ui(question: str, tools, tool_map, llm_with_tools):
 
     messages = [SystemMessage(content=SYSTEM_PROMPT), HumanMessage(content=question)]
     
-    # Create an expander box to show live execution steps
     with st.expander("🕵️‍♂️ View Agent Execution Trace Logs", expanded=True):
         for step in range(1, max_steps + 1):
             ai_msg = llm_with_tools.invoke(messages)
@@ -81,13 +94,9 @@ user_question = st.text_area("✍️ Ask the Agent a multi-part question:",
                              value="What is LangChain? Also, what is 5 multiplied by 15? Summarize the recent news about AI agents.")
 
 if st.button("🚀 Execute Agent Loop"):
-    if not groq_key or not tavily_key:
-        st.warning("⚠️ Please provide both your Groq and Tavily API keys in the sidebar.")
+    if not GROQ_API_KEY or not TAVILY_API_KEY:
+        st.error("❌ Cannot run. Please add your credentials inside your Streamlit App settings dashboard.")
     else:
-        # Set environment keys dynamically
-        os.environ["GROQ_API_KEY"] = groq_key
-        os.environ["TAVILY_API_KEY"] = tavily_key
-
         with st.spinner("Agent is reasoning and executing tools..."):
             try:
                 # Initialize tools dynamically
@@ -105,7 +114,6 @@ if st.button("🚀 Execute Agent Loop"):
                 # Run core agent
                 final_output = run_agent_ui(user_question, tools, tool_map, llm_with_tools)
                 
-                # Render final results clean
                 st.markdown("### 🏆 Final Synthesized Answer")
                 st.info(final_output)
 
