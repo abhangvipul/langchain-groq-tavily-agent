@@ -9,8 +9,8 @@ from langchain_core.messages import HumanMessage, SystemMessage, ToolMessage
 
 # --- STREAMLIT UI CONFIGURATION ---
 st.set_page_config(page_title="AI Agent Framework", page_icon="🤖", layout="wide")
-st.title("🤖 LangChain & Groq AI Agent Dashboard")
-st.write("Your agent is now fully authenticated using secure cloud environment secrets.")
+st.title("🤖 AgentIQ")
+st.write("Think. Reason. Act.")
 
 # --- SECURE CREDENTIAL RETRIEVAL ---
 # This pulls safely from Streamlit Cloud Secrets or local .streamlit/secrets.toml
