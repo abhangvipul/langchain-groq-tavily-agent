@@ -303,6 +303,12 @@ if GROQ_API_KEY:
 if TAVILY_API_KEY:
     os.environ["TAVILY_API_KEY"] = TAVILY_API_KEY
 
+# ============================================================
+# MAIN TITLE
+# ============================================================
+
+st.title("🤖 AgentIQ")
+st.write("Think. Reason. Act.")
 
 # ============================================================
 # SIDEBAR CONFIGURATION
