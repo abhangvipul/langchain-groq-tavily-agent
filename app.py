@@ -56,23 +56,6 @@ st.markdown("""
 
 
     /* ==============================
-       STREAMLIT TITLE
-       ============================== */
-
-    h1 {
-        color: #0F172A !important;
-        font-size: 38px !important;
-        font-weight: 800 !important;
-        letter-spacing: -1px !important;
-        margin-bottom: 2px !important;
-    }
-
-    .stApp p {
-        color: #64748B;
-    }
-
-
-    /* ==============================
        SIDEBAR
        ============================== */
 
@@ -98,37 +81,55 @@ st.markdown("""
 
 
     /* ==============================
+       BRANDING
+       ============================== */
+
+    .brand-title {
+        font-size: 34px;
+        font-weight: 800;
+        color: #0F172A;
+        letter-spacing: -1px;
+        margin-bottom: 2px;
+    }
+
+    .brand-subtitle {
+        font-size: 14px;
+        color: #64748B;
+        margin-bottom: 24px;
+    }
+
+
+    /* ==============================
        ONLINE STATUS
        ============================== */
 
     .online-status {
         display: inline-block;
         background-color: #ECFDF5;
-        color: #047857 !important;
+        color: #047857;
         border: 1px solid #A7F3D0;
         border-radius: 20px;
         padding: 6px 13px;
         font-size: 13px;
         font-weight: 650;
-        margin-top: 12px;
         margin-bottom: 18px;
     }
 
 
     /* ==============================
-       QUESTION SECTION
+       MAIN HEADING
        ============================== */
 
     .main-heading {
-        font-size: 27px;
+        font-size: 32px;
         font-weight: 800;
-        color: #0F172A !important;
+        color: #0F172A;
         margin-bottom: 5px;
-        letter-spacing: -0.5px;
+        letter-spacing: -0.7px;
     }
 
     .main-description {
-        color: #64748B !important;
+        color: #64748B;
         font-size: 15px;
         margin-bottom: 20px;
     }
@@ -229,13 +230,13 @@ st.markdown("""
     .answer-heading {
         font-size: 25px;
         font-weight: 800;
-        color: #0F172A !important;
+        color: #0F172A;
         margin-top: 28px;
         margin-bottom: 5px;
     }
 
     .answer-description {
-        color: #64748B !important;
+        color: #64748B;
         font-size: 14px;
         margin-bottom: 12px;
     }
@@ -251,7 +252,7 @@ st.markdown("""
         border-radius: 9px;
         padding: 9px 11px;
         margin-bottom: 8px;
-        color: #334155 !important;
+        color: #334155;
         font-size: 13px;
         font-weight: 600;
     }
@@ -264,7 +265,7 @@ st.markdown("""
     .tech-heading {
         font-size: 21px;
         font-weight: 750;
-        color: #0F172A !important;
+        color: #0F172A;
         margin-top: 30px;
         margin-bottom: 12px;
     }
@@ -276,7 +277,7 @@ st.markdown("""
 
     .footer {
         text-align: center;
-        color: #94A3B8 !important;
+        color: #94A3B8;
         font-size: 12px;
         margin-top: 40px;
         padding-top: 20px;
@@ -301,14 +302,6 @@ if GROQ_API_KEY:
 
 if TAVILY_API_KEY:
     os.environ["TAVILY_API_KEY"] = TAVILY_API_KEY
-
-
-# ============================================================
-# MAIN TITLE
-# ============================================================
-
-st.title("🤖 AgentIQ")
-st.write("Think. Reason. Act.")
 
 
 # ============================================================
