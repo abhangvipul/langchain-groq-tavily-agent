@@ -1,4 +1,3 @@
-```python
 import os
 import streamlit as st
 
@@ -913,4 +912,3 @@ st.markdown("""
     AgentIQ · Built with Streamlit, LangChain, Groq & Tavily
 </div>
 """, unsafe_allow_html=True)
-```
