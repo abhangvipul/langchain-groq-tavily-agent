@@ -20,35 +20,27 @@ st.set_page_config(
 
 
 # ============================================================
-# MODERN LIGHT THEME
+# UI STYLING ONLY
 # ============================================================
 
 st.markdown("""
 <style>
 
-    /* --------------------------------------------------------
-       GLOBAL PAGE
-    -------------------------------------------------------- */
+    /* ==============================
+       MAIN PAGE
+       ============================== */
 
     .stApp {
-        background-color: #F5F7FB;
-        color: #0F172A;
-    }
-
-    .main {
         background-color: #F5F7FB;
     }
 
     .block-container {
+        max-width: 1200px;
         padding-top: 2rem;
         padding-bottom: 3rem;
-        max-width: 1250px;
     }
 
-
-    /* --------------------------------------------------------
-       HIDE STREAMLIT DEFAULT ELEMENTS
-    -------------------------------------------------------- */
+    /* Hide default Streamlit elements */
 
     #MainMenu {
         visibility: hidden;
@@ -63,9 +55,9 @@ st.markdown("""
     }
 
 
-    /* --------------------------------------------------------
+    /* ==============================
        SIDEBAR
-    -------------------------------------------------------- */
+       ============================== */
 
     section[data-testid="stSidebar"] {
         background-color: #FFFFFF;
@@ -73,7 +65,7 @@ st.markdown("""
     }
 
     section[data-testid="stSidebar"] > div {
-        padding-top: 2rem;
+        padding-top: 1.5rem;
     }
 
     section[data-testid="stSidebar"] h1,
@@ -82,31 +74,36 @@ st.markdown("""
         color: #0F172A;
     }
 
+    section[data-testid="stSidebar"] p,
+    section[data-testid="stSidebar"] label {
+        color: #475569;
+    }
 
-    /* --------------------------------------------------------
-       MAIN TITLE
-    -------------------------------------------------------- */
 
-    .main-title {
-        font-size: 38px;
+    /* ==============================
+       BRANDING
+       ============================== */
+
+    .brand-title {
+        font-size: 34px;
         font-weight: 800;
         color: #0F172A;
-        margin-bottom: 2px;
         letter-spacing: -1px;
+        margin-bottom: 2px;
     }
 
-    .main-subtitle {
-        font-size: 16px;
+    .brand-subtitle {
+        font-size: 14px;
         color: #64748B;
-        margin-bottom: 25px;
+        margin-bottom: 24px;
     }
 
 
-    /* --------------------------------------------------------
-       STATUS BADGE
-    -------------------------------------------------------- */
+    /* ==============================
+       ONLINE STATUS
+       ============================== */
 
-    .status-badge {
+    .online-status {
         display: inline-block;
         background-color: #ECFDF5;
         color: #047857;
@@ -114,33 +111,33 @@ st.markdown("""
         border-radius: 20px;
         padding: 6px 13px;
         font-size: 13px;
-        font-weight: 600;
+        font-weight: 650;
+        margin-bottom: 18px;
+    }
+
+
+    /* ==============================
+       MAIN HEADING
+       ============================== */
+
+    .main-heading {
+        font-size: 32px;
+        font-weight: 800;
+        color: #0F172A;
+        margin-bottom: 5px;
+        letter-spacing: -0.7px;
+    }
+
+    .main-description {
+        color: #64748B;
+        font-size: 15px;
         margin-bottom: 20px;
     }
 
 
-    /* --------------------------------------------------------
-       SECTION HEADINGS
-    -------------------------------------------------------- */
-
-    .section-title {
-        font-size: 22px;
-        font-weight: 750;
-        color: #0F172A;
-        margin-top: 10px;
-        margin-bottom: 5px;
-    }
-
-    .section-description {
-        color: #64748B;
-        font-size: 14px;
-        margin-bottom: 15px;
-    }
-
-
-    /* --------------------------------------------------------
-       TEXT AREA
-    -------------------------------------------------------- */
+    /* ==============================
+       QUESTION TEXT AREA
+       ============================== */
 
     textarea {
         background-color: #FFFFFF !important;
@@ -148,33 +145,33 @@ st.markdown("""
         border: 1px solid #CBD5E1 !important;
         border-radius: 12px !important;
         font-size: 15px !important;
-        padding: 14px !important;
+        line-height: 1.5 !important;
     }
 
     textarea:focus {
         border: 2px solid #2563EB !important;
-        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10) !important;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08) !important;
     }
 
 
-    /* --------------------------------------------------------
-       PRIMARY BUTTON
-    -------------------------------------------------------- */
+    /* ==============================
+       EXECUTE BUTTON
+       ============================== */
 
     .stButton > button {
         width: 100%;
         min-height: 48px;
+        border: none;
+        border-radius: 10px;
         background: linear-gradient(
             135deg,
             #2563EB,
             #1D4ED8
         );
         color: #FFFFFF;
-        border: none;
-        border-radius: 10px;
         font-size: 15px;
         font-weight: 700;
-        box-shadow: 0 6px 15px rgba(37, 99, 235, 0.20);
+        box-shadow: 0 5px 14px rgba(37, 99, 235, 0.20);
         transition: all 0.2s ease;
     }
 
@@ -186,20 +183,19 @@ st.markdown("""
         );
         color: #FFFFFF;
         transform: translateY(-1px);
-        box-shadow: 0 8px 20px rgba(37, 99, 235, 0.28);
+        box-shadow: 0 8px 18px rgba(37, 99, 235, 0.25);
     }
 
 
-    /* --------------------------------------------------------
-       EXPANDER
-    -------------------------------------------------------- */
+    /* ==============================
+       EXPANDER / EXECUTION TRACE
+       ============================== */
 
     div[data-testid="stExpander"] {
         background-color: #FFFFFF;
         border: 1px solid #E2E8F0;
         border-radius: 12px;
         margin-top: 20px;
-        margin-bottom: 20px;
     }
 
     div[data-testid="stExpander"] summary {
@@ -208,40 +204,49 @@ st.markdown("""
     }
 
 
-    /* --------------------------------------------------------
+    /* ==============================
        CODE BLOCK
-    -------------------------------------------------------- */
+       ============================== */
 
     div[data-testid="stCodeBlock"] {
-        border-radius: 10px;
+        border-radius: 9px;
+        border: 1px solid #E2E8F0;
     }
 
 
-    /* --------------------------------------------------------
-       SUCCESS MESSAGE
-    -------------------------------------------------------- */
+    /* ==============================
+       ALERTS
+       ============================== */
 
     div[data-testid="stAlert"] {
         border-radius: 10px;
     }
 
 
-    /* --------------------------------------------------------
-       SIDEBAR DIVIDER
-    -------------------------------------------------------- */
+    /* ==============================
+       FINAL ANSWER
+       ============================== */
 
-    hr {
-        border: none;
-        border-top: 1px solid #E2E8F0;
-        margin: 20px 0;
+    .answer-heading {
+        font-size: 25px;
+        font-weight: 800;
+        color: #0F172A;
+        margin-top: 28px;
+        margin-bottom: 5px;
+    }
+
+    .answer-description {
+        color: #64748B;
+        font-size: 14px;
+        margin-bottom: 12px;
     }
 
 
-    /* --------------------------------------------------------
-       SIDEBAR TOOL LABELS
-    -------------------------------------------------------- */
+    /* ==============================
+       SIDEBAR TOOL CARDS
+       ============================== */
 
-    .tool-label {
+    .tool-card {
         background-color: #F8FAFC;
         border: 1px solid #E2E8F0;
         border-radius: 9px;
@@ -253,43 +258,24 @@ st.markdown("""
     }
 
 
-    /* --------------------------------------------------------
-       ANSWER AREA
-    -------------------------------------------------------- */
+    /* ==============================
+       TECHNOLOGY SECTION
+       ============================== */
 
-    .answer-header {
-        font-size: 24px;
-        font-weight: 800;
+    .tech-heading {
+        font-size: 21px;
+        font-weight: 750;
         color: #0F172A;
-        margin-top: 25px;
-        margin-bottom: 10px;
-    }
-
-    .answer-description {
-        color: #64748B;
-        font-size: 14px;
+        margin-top: 30px;
         margin-bottom: 12px;
     }
 
 
-    /* --------------------------------------------------------
-       TECHNOLOGY CARDS
-    -------------------------------------------------------- */
-
-    .tech-title {
-        font-size: 21px;
-        font-weight: 750;
-        color: #0F172A;
-        margin-top: 35px;
-        margin-bottom: 15px;
-    }
-
-
-    /* --------------------------------------------------------
+    /* ==============================
        FOOTER
-    -------------------------------------------------------- */
+       ============================== */
 
-    .footer-text {
+    .footer {
         text-align: center;
         color: #94A3B8;
         font-size: 12px;
@@ -306,9 +292,11 @@ st.markdown("""
 # SECURE CREDENTIAL RETRIEVAL
 # ============================================================
 
+# This pulls safely from Streamlit Cloud Secrets or local .streamlit/secrets.toml
 GROQ_API_KEY = st.secrets.get("GROQ_API_KEY", "")
 TAVILY_API_KEY = st.secrets.get("TAVILY_API_KEY", "")
 
+# Sync secrets to the OS environment so LangChain tools can find them natively
 if GROQ_API_KEY:
     os.environ["GROQ_API_KEY"] = GROQ_API_KEY
 
@@ -322,8 +310,17 @@ if TAVILY_API_KEY:
 
 with st.sidebar:
 
-    st.markdown("## ✦ AgentIQ")
-    st.caption("AI Agent Control Center")
+    st.markdown(
+        '<div class="brand-title">✦ AgentIQ</div>',
+        unsafe_allow_html=True
+    )
+
+    st.markdown(
+        '<div class="brand-subtitle">'
+        'AI Agent Control Center'
+        '</div>',
+        unsafe_allow_html=True
+    )
 
     st.markdown("---")
 
@@ -349,17 +346,17 @@ with st.sidebar:
     st.markdown("### 🛠️ Available Tools")
 
     st.markdown(
-        '<div class="tool-label">🔎 Tavily — Web Search</div>',
+        '<div class="tool-card">🔎 Tavily Search</div>',
         unsafe_allow_html=True
     )
 
     st.markdown(
-        '<div class="tool-label">📚 Wikipedia — Knowledge</div>',
+        '<div class="tool-card">📚 Wikipedia</div>',
         unsafe_allow_html=True
     )
 
     st.markdown(
-        '<div class="tool-label">➕ Arithmetic — Add / Multiply</div>',
+        '<div class="tool-card">➕ Add / Multiply</div>',
         unsafe_allow_html=True
     )
 
@@ -368,18 +365,18 @@ with st.sidebar:
     st.markdown("### 🔐 System Status")
 
     if GROQ_API_KEY and TAVILY_API_KEY:
-        st.success("System Fully Authenticated")
+        st.success("🔒 Fully Authenticated")
     else:
-        st.error("Missing Cloud Secrets")
+        st.error("⚠️ Missing Cloud Secrets")
 
     st.markdown("---")
 
-    st.markdown("### 💻 Technology Stack")
+    st.markdown("### 💻 Technology")
 
-    st.caption("Groq LLM")
-    st.caption("LangChain")
-    st.caption("Tavily Search")
-    st.caption("Wikipedia")
+    st.caption("⚡ Groq")
+    st.caption("🔗 LangChain")
+    st.caption("🔎 Tavily")
+    st.caption("📚 Wikipedia")
 
 
 # ============================================================
@@ -425,6 +422,7 @@ def run_agent_ui(question: str, tools, tool_map, llm_with_tools):
         for step in range(1, max_steps + 1):
 
             ai_msg = llm_with_tools.invoke(messages)
+
             messages.append(ai_msg)
 
             if not ai_msg.tool_calls:
@@ -443,6 +441,7 @@ def run_agent_ui(question: str, tools, tool_map, llm_with_tools):
             for tool_call in ai_msg.tool_calls:
 
                 name = tool_call["name"]
+
                 selected_tool = tool_map.get(name)
 
                 st.code(
@@ -467,7 +466,9 @@ def run_agent_ui(question: str, tools, tool_map, llm_with_tools):
 
                     messages.append(result)
 
-                    st.caption("✅ Tool successfully executed.")
+                    st.caption(
+                        "✅ Tool successfully executed."
+                    )
 
                 except Exception as e:
 
@@ -486,82 +487,47 @@ def run_agent_ui(question: str, tools, tool_map, llm_with_tools):
 
 
 # ============================================================
-# MAIN PAGE
+# MAIN PAGE UI
 # ============================================================
 
 st.markdown(
-    '<div class="status-badge">🟢 Agent Online</div>',
+    '<div class="online-status">🟢 Agent Online</div>',
     unsafe_allow_html=True
 )
 
 st.markdown(
-    '<div class="main-title">AgentIQ</div>',
+    '<div class="main-heading">Ask your AI Agent</div>',
     unsafe_allow_html=True
 )
 
 st.markdown(
-    '<div class="main-subtitle">'
-    'Intelligent AI Agent powered by Groq + Tavily'
-    '</div>',
-    unsafe_allow_html=True
-)
-
-
-# ============================================================
-# ASK AGENT SECTION
-# ============================================================
-
-st.markdown(
-    '<div class="section-title">Ask your AI Agent</div>',
-    unsafe_allow_html=True
-)
-
-st.markdown(
-    '<div class="section-description">'
+    '<div class="main-description">'
     'Ask questions, perform calculations, research current information, '
-    'or combine multiple tasks in one request.'
+    'or combine multiple tasks in a single request.'
     '</div>',
     unsafe_allow_html=True
 )
 
+
+# ============================================================
+# QUESTION INPUT
+# ============================================================
 
 user_question = st.text_area(
-    "Your question",
+    "✍️ Ask the Agent a multi-part question:",
     value=(
         "What is LangChain? Also, what is 5 multiplied by 15? "
         "Summarize the recent news about AI agents."
     ),
-    height=140,
-    label_visibility="collapsed"
+    height=140
 )
 
 
 # ============================================================
-# EXAMPLE QUESTIONS
+# EXECUTE AGENT
 # ============================================================
 
-st.caption("TRY ASKING")
-
-example_col1, example_col2, example_col3, example_col4 = st.columns(4)
-
-with example_col1:
-    st.info("What is LangChain?")
-
-with example_col2:
-    st.info("Latest AI agent news")
-
-with example_col3:
-    st.info("Calculate 25 × 40")
-
-with example_col4:
-    st.info("Explain RAG simply")
-
-
-# ============================================================
-# EXECUTE BUTTON
-# ============================================================
-
-if st.button("✦  Find Answer", use_container_width=True):
+if st.button("✦  Find Answer"):
 
     if not GROQ_API_KEY or not TAVILY_API_KEY:
 
@@ -578,7 +544,9 @@ if st.button("✦  Find Answer", use_container_width=True):
 
             try:
 
-                # Initialize tools dynamically
+                # ====================================================
+                # ORIGINAL TOOL INITIALIZATION
+                # ====================================================
 
                 api_wrapper = WikipediaAPIWrapper(
                     top_k_results=2,
@@ -606,7 +574,9 @@ if st.button("✦  Find Answer", use_container_width=True):
                 }
 
 
-                # Initialize LLM
+                # ====================================================
+                # ORIGINAL LLM INITIALIZATION
+                # ====================================================
 
                 llm = ChatGroq(
                     model=model_choice,
@@ -616,7 +586,9 @@ if st.button("✦  Find Answer", use_container_width=True):
                 llm_with_tools = llm.bind_tools(tools)
 
 
-                # Run core agent
+                # ====================================================
+                # ORIGINAL AGENT EXECUTION
+                # ====================================================
 
                 final_output = run_agent_ui(
                     user_question,
@@ -627,11 +599,11 @@ if st.button("✦  Find Answer", use_container_width=True):
 
 
                 # ====================================================
-                # FINAL ANSWER
+                # FINAL ANSWER UI
                 # ====================================================
 
                 st.markdown(
-                    '<div class="answer-header">'
+                    '<div class="answer-heading">'
                     '🏆 Final Synthesized Answer'
                     '</div>',
                     unsafe_allow_html=True
@@ -639,8 +611,8 @@ if st.button("✦  Find Answer", use_container_width=True):
 
                 st.markdown(
                     '<div class="answer-description">'
-                    'The agent combined the required tools and generated '
-                    'the following response.'
+                    'The agent completed the requested tasks and '
+                    'generated the response below.'
                     '</div>',
                     unsafe_allow_html=True
                 )
@@ -653,25 +625,25 @@ if st.button("✦  Find Answer", use_container_width=True):
                 # ====================================================
 
                 st.markdown(
-                    '<div class="tech-title">Powered By</div>',
+                    '<div class="tech-heading">Powered By</div>',
                     unsafe_allow_html=True
                 )
 
-                tech1, tech2, tech3, tech4 = st.columns(4)
+                col1, col2, col3, col4 = st.columns(4)
 
-                with tech1:
+                with col1:
                     st.markdown("### ⚡ Groq")
                     st.caption("Fast LLM inference")
 
-                with tech2:
+                with col2:
                     st.markdown("### 🔗 LangChain")
                     st.caption("Agent orchestration")
 
-                with tech3:
+                with col3:
                     st.markdown("### 🔎 Tavily")
                     st.caption("Web research")
 
-                with tech4:
+                with col4:
                     st.markdown("### 📚 Wikipedia")
                     st.caption("Knowledge retrieval")
 
@@ -688,7 +660,7 @@ if st.button("✦  Find Answer", use_container_width=True):
 # ============================================================
 
 st.markdown(
-    '<div class="footer-text">'
+    '<div class="footer">'
     'AgentIQ • Intelligent AI Agent Framework • '
     'Powered by Groq + LangChain'
     '</div>',
